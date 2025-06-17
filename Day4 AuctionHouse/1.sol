@@ -1,6 +1,7 @@
 //SPDX-License-Identifier:MIT;
 pragma solidty ^0.8.0;
 
+//合约部署者、拍卖品、拍卖结束时间、最高拍卖者/拍卖价、是否结束(默认false)
 contract Auctionhouse{
     address public owner;
     string public item;
@@ -12,7 +13,8 @@ contract Auctionhouse{
     mapping(address=>uint) public bids;
     address[] public bidders;
 
-    constructo(string memory _item , uint _biddingTime){
+//构造函数：部署合约只执行一次，且合约内只能定义一个
+    constructor(string memory _item , uint _biddingTime){
         owner=msg.sender;
         item=_item;
         auctionEndTime= block.timestamp + _biddingTime;
@@ -27,18 +29,18 @@ contract Auctionhouse{
             bidders.push(msg.sender);
         }
 
-    bids[msg.sender] = amount;
+        bids[msg.sender] = amount;
 
-    if (amount > highestBid) {
+        if (amount > highestBid) {
           highestBid = amount;
           highestBidder = msg.sender;
-       }
+        }
     }
 
+//终止拍卖，并确保无人提前结束拍卖
     function endAuction() external {
         require(block.timestamp >= auctionEndTime, "Auction hasn't ended yet.");
         require(!ended, "Auction end already called.");
-
         ended = true;
     }
 
