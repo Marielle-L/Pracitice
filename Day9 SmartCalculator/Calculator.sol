@@ -44,16 +44,19 @@ contract Calculator{
         return result;
     }
 
-    function calculatorPower(uint256 base,uint256 exponent)public view returns(uint256){
-    
+//Connecting to Another Contract
+
+    function calculatorPower(uint256 base,uint256 exponent)public view returns(uint256){   
+
     ScientificCalculator scientificCalc = ScientificCalculator(scientificCalculatorAddress);
-
     uint256 result = scientificCalc.power(base,exponent);
-
     return result;
 
 }
+
+// Lower level calling
     function calculatorSquareRoot (uint256 number)public returns (uint256){
+
         require(number>= 0,"Cannot calculate square root of negative number");
 
         bytes memory data = abi.encodeWithSignature("squareRoot(int256)",number);
