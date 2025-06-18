@@ -29,3 +29,17 @@ contract VaultMaster is Ownable{
     }
 
 }
+
+// 使用OpenZeppelin
+/*
+import "@OpenZeppelin/contracts/access/Ownable.sol";
+
+constract vaultMaster is Ownable {
+    event ……
+    event ……
+    constructor() Ownable(msg.sender){}
+    …………
+
+}
+
+*/
