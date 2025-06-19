@@ -14,6 +14,7 @@ contract VaultManager{
     event BoxCreated(address indexed owner, address indexed boxAdress, string boxType);
     event BoxNamed(address indexed boxAdress, string name);
 
+// box是BasicDepositBox合约实例，是该新合约的变量
     function createBasicBox() external returns (address){
 
         BasicDepositBox box = new BasicDepositBox();
