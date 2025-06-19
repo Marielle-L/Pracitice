@@ -4,8 +4,8 @@ pragma solidity ^0.8.0;
 
 contract MyToken{
 
-    string public name = "Web3 Compass";
-    string public symbol = "WBT";
+    string public name = "AllForher";
+    string public symbol = "AFT";
     uint8 public decimals = 18;
     uint256 public totalSupply;
 
@@ -27,6 +27,7 @@ contract MyToken{
         balanceOf[_to] += _value;
         emit Transfer(_from, _to, _value);
     }
+
      function transfer(address _to, uint256 _value)public virtual returns (bool success){ 
         require(balanceOf[msg.sender] >= _value , "Not enough balance");
         _transfer(msg.sender, _to, _value);
