@@ -8,6 +8,8 @@ contract SimpleERC20 {
     uint256 public totalSupply;
 
     mapping(address => uint256) public balanceOf;
+//用于跟踪谁被允许代表谁花费代币——以及花费多少。这是 ERC-20 的核心功能：让其他人（如 DApp 或智能合约）移动您的代币，但前提是您事先批准 
+// allowancw([owner][spender])=可授权金额
     mapping(address => mapping(address => uint256)) public allowance;
 
     event Transfer(address indexed from, address indexed to, uint256 value);
@@ -47,3 +49,22 @@ contract SimpleERC20 {
         emit Transfer(_from, _to, _value);
     }
 }
+
+// 使用openzeppelin
+/*
+SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+
+contract MyToken is ERC20 {
+    constructor(uint256 initialSupply) ERC20("MyToken", "MTK") {
+        _mint(msg.sender, initialSupply * 10 ** decimals());
+    }
+}
+*/
+
+
+
+
+
